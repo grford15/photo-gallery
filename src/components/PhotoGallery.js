@@ -30,7 +30,25 @@ class PhotoGallery extends Component {
   }
 
   render() {
-    return <div className="container">PhotoGallery</div>;
+    const { results } = this.state;
+    console.log(results);
+    return (
+      <div className="container">
+        {results.length > 0 ? (
+          results.map(result => (
+            <div key={result.id} className="photo">
+              <a href={result.urls.full}>
+                <img src={result.urls.small} alt="alt" />
+              </a>
+              <h6>{result.user.name}</h6>
+              <p>{result.alt_description}</p>
+            </div>
+          ))
+        ) : (
+          <h4>Loading ... </h4>
+        )}
+      </div>
+    );
   }
 }
 
